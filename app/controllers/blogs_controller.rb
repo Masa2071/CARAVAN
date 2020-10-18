@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   def index
+    @blogs = Blog.all
   end
 
   def show
@@ -11,16 +12,16 @@ class BlogsController < ApplicationController
   def new
     @blog = Blog.new
   end
-  
+
   def create
-    blog = Bolg.new(blog_params)
-    blog.create
+    blog = Blog.new(blog_params)
+    blog.save
     redirect_to blogs_path
   end
-  
-  private 
-  
+
+  private
+
   def blog_params
-    params.require(:bolg).permit(:title, :body, :category)
+    params.require(:blog).permit(:title, :body, :category)
   end
 end
